@@ -1,6 +1,9 @@
 CC?=cc
 CFLAGS?=-std=c11 -Wall -Werror -Wextra -pedantic
 
+foo: noAs.c
+	gcc-15 -o noAs noAs.c $(CFLAGS)
+
 foo: foo.c
 	gcc-15 -o foo foo.c $(CFLAGS)
 

@@ -5,6 +5,7 @@
 int main(int argc, char* argv[]) {
   srand(time(NULL));
 
+
   // NdM  3d6 2d8
   int dice_dices[argc-1];
   int dice_sides[argc-1];
@@ -15,7 +16,12 @@ int main(int argc, char* argv[]) {
     if (sscanf(argv[i], "%dd%d", &num_dice, &num_sides) == 2) {
       dice_dices[i-1] = num_dice;
       dice_sides[i-1] = num_sides;
-    } else {
+    } 
+    else if (sscanf(argv[i], "d%d", &num_sides) == 1) { // sscanf(input, format, pointers (variables bound to extracted values))
+      dice_dices[i-1] = 1;
+      dice_sides[i-1] = num_sides;
+    }
+    else {
       printf("Not a dice roll: %s\n", argv[i]);
       return 1;
     }

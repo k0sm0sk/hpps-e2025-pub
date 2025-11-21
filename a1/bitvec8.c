@@ -47,3 +47,18 @@ bitvec8 bitvec8_add(bitvec8 x, bitvec8 y) {
 
   return r.s;
 }
+
+
+bitvec8 bitvec8_negate(bitvec8 x) {
+  return bitvec8_add(~x, bitvec8_from_int(1));
+}
+/*
+  We had a lot of trouble with this part and had to read the book. Since bitvec8 type was defined with
+  `typedef uint8_t bitvec8;`
+  We can't use struct, and got a lot of errors. Instead we had to remove the struct given in the pdf 
+  ```
+  (Implement this function:
+  struct bitvec8 bitvec8_negate ( struct bitvec8 x);)
+  ```
+  entirely
+*/

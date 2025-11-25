@@ -30,7 +30,7 @@ void bitvec_test_add(void) {
   printf("\nTesting %d + %d = %d:\nResult %d \n", -10, -10, -20, bitvec8_to_int(bitvec8_add(bitvec8_from_int(-10), bitvec8_from_int(-10))));
   assert(bitvec8_to_int(bitvec8_add(bitvec8_from_int(-10), bitvec8_from_int(-10))) == ((-10 + -10) & 0xFF));
   
-  printf("Test %s passed!\n", __func__);
+  printf("\nTest %s passed!\n", __func__);
 }
 
 void bitvec_test_negate(void) {

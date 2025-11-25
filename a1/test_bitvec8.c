@@ -13,27 +13,28 @@ void test_bitvec8_from_int(void) {
 
 
 void bitvec_test_add(void) {
-  printf("\n");
+  printf("\n\n---Addition---\n\n");
   
-  printf("\nTesting %d + %d = %d:\nResult %d \n", 4, 6, 10, bitvec8_to_int(bitvec8_add(bitvec8_from_int(4), bitvec8_from_int(6))));
+  printf("\nComparing %d + %d = %d:\nResult %d \n", 4, 6, 10, bitvec8_to_int(bitvec8_add(bitvec8_from_int(4), bitvec8_from_int(6))));
   assert(bitvec8_to_int(bitvec8_add(bitvec8_from_int(4), bitvec8_from_int(6))) == ((4 + 6) & 0xFF));
 
-  printf("\nTesting %d + %d = %d:\nResult %d \n", 0, 0, 0, bitvec8_to_int(bitvec8_add(bitvec8_from_int(0), bitvec8_from_int(0))));
+  printf("\nComparing %d + %d = %d:\nResult %d \n", 0, 0, 0, bitvec8_to_int(bitvec8_add(bitvec8_from_int(0), bitvec8_from_int(0))));
   assert(bitvec8_to_int(bitvec8_add(bitvec8_from_int(0), bitvec8_from_int(0))) == ((0 + 0) & 0xFF));
 
-  printf("\nTesting %d + %d = %d:\nResult %d \n", 255, 1, 256, bitvec8_to_int(bitvec8_add(bitvec8_from_int(255), bitvec8_from_int(1))));
+  printf("\nComparing %d + %d = %d:\nResult %d \n", 255, 1, 256, bitvec8_to_int(bitvec8_add(bitvec8_from_int(255), bitvec8_from_int(1))));
   assert(bitvec8_to_int(bitvec8_add(bitvec8_from_int(255), bitvec8_from_int(1))) == ((255 + 1) & 0xFF));
 
-  printf("\nTesting %d + %d = %d:\nResult %d \n", 10, -10, 0, bitvec8_to_int(bitvec8_add(bitvec8_from_int(10), bitvec8_from_int(-10))));
+  printf("\nComparing %d + %d = %d:\nResult %d \n", 10, -10, 0, bitvec8_to_int(bitvec8_add(bitvec8_from_int(10), bitvec8_from_int(-10))));
   assert(bitvec8_to_int(bitvec8_add(bitvec8_from_int(10), bitvec8_from_int(-10))) == ((10 + -10) & 0xFF));
 
-  printf("\nTesting %d + %d = %d:\nResult %d \n", -10, -10, -20, bitvec8_to_int(bitvec8_add(bitvec8_from_int(-10), bitvec8_from_int(-10))));
+  printf("\nComparing %d + %d = %d:\nResult %d \n", -10, -10, -20, bitvec8_to_int(bitvec8_add(bitvec8_from_int(-10), bitvec8_from_int(-10))));
   assert(bitvec8_to_int(bitvec8_add(bitvec8_from_int(-10), bitvec8_from_int(-10))) == ((-10 + -10) & 0xFF));
   
   printf("\nTest %s passed!\n", __func__);
 }
 
 void bitvec_test_negate(void) {
+  printf("\n\n---Negation---\n\n");
   // Test 1: Negate positive number (10 -> -10)
   printf("\nComparing %i with %i: %d ?= %d", 10, -10, 
          bitvec8_to_int(bitvec8_negate(bitvec8_from_int(10))), 
@@ -66,17 +67,17 @@ void bitvec_test_negate(void) {
          bitvec8_to_int(bitvec8_negate(bitvec8_from_int(-128))));
   // Note: This may wrap around to -128 due to overflow
   
-  printf("\nTest %s passed!\n", __func__);
+  printf("\n\nTest %s passed!\n", __func__);
 }
 
 void bitvec_test_mul(void) {
-  printf("\n\n");
- printf("\nComparing %i * %i = %i:\nResult: %d\n", 5, 3, 15, bitvec8_mul(bitvec8_from_int(5), bitvec8_from_int(3)));
- printf("\nComparing %i * %i = %i:\nResult: %d\n", 10, -10, -100, bitvec8_mul(bitvec8_from_int(10), bitvec8_from_int(-10)));
- printf("\nComparing %i * %i = %i:\nResult: %d\n", -10, -10, 100, bitvec8_mul(bitvec8_from_int(10), bitvec8_from_int(-10)));
- printf("\nComparing %i * %i = %i:\nResult: %d\n", 0, 5, 0, bitvec8_mul(bitvec8_from_int(0), bitvec8_from_int(5)));
- printf("\nComparing %i * %i = %i:\nResult: %d\n", 1, 5, 5, bitvec8_mul(bitvec8_from_int(1), bitvec8_from_int(5)));
- printf("\nComparing %i * %i = %i:\nResult: %d\n\n", 16, 16, 256, bitvec8_mul(bitvec8_from_int(16), bitvec8_from_int(16)));
+  printf("\n\n---Multiplication---\n\n");
+  printf("\nComparing %i * %i = %i:\nResult: %d\n", 5, 3, 15, bitvec8_mul(bitvec8_from_int(5), bitvec8_from_int(3)));
+  printf("\nComparing %i * %i = %i:\nResult: %d\n", 10, -10, -100, bitvec8_mul(bitvec8_from_int(10), bitvec8_from_int(-10)));
+  printf("\nComparing %i * %i = %i:\nResult: %d\n", -10, -10, 100, bitvec8_mul(bitvec8_from_int(10), bitvec8_from_int(-10)));
+  printf("\nComparing %i * %i = %i:\nResult: %d\n", 0, 5, 0, bitvec8_mul(bitvec8_from_int(0), bitvec8_from_int(5)));
+  printf("\nComparing %i * %i = %i:\nResult: %d\n", 1, 5, 5, bitvec8_mul(bitvec8_from_int(1), bitvec8_from_int(5)));
+  printf("\nComparing %i * %i = %i:\nResult: %d\n\n", 16, 16, 256, bitvec8_mul(bitvec8_from_int(16), bitvec8_from_int(16)));
 
 
   assert(bitvec8_mul(bitvec8_from_int(5), bitvec8_from_int(3)) == bitvec8_to_int(bitvec8_from_int(15)));

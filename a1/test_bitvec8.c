@@ -70,16 +70,18 @@ void bitvec_test_negate(void) {
 }
 
 void bitvec_test_mul(void) {
-  //printf("\n\n");
- // printf("\nComparing %i * %i = %i:\nResult: %d\n", 5, 3, 15, bitvec8_mul(bitvec8_from_int(5), bitvec8_from_int(3)));
- // printf("\nComparing %i * %i = %i:\nResult: %d\n", 10, -10, -100, bitvec8_mul(bitvec8_from_int(10), bitvec8_from_int(-10)));
- // printf("\nComparing %i * %i = %i:\nResult: %d\n", 0, 5, 0, bitvec8_mul(bitvec8_from_int(0), bitvec8_from_int(5)));
- // printf("\nComparing %i * %i = %i:\nResult: %d\n", 1, 5, 5, bitvec8_mul(bitvec8_from_int(1), bitvec8_from_int(5)));
- // printf("\nComparing %i * %i = %i:\nResult: %d\n\n", 16, 16, 256, bitvec8_mul(bitvec8_from_int(16), bitvec8_from_int(16)));
+  printf("\n\n");
+ printf("\nComparing %i * %i = %i:\nResult: %d\n", 5, 3, 15, bitvec8_mul(bitvec8_from_int(5), bitvec8_from_int(3)));
+ printf("\nComparing %i * %i = %i:\nResult: %d\n", 10, -10, -100, bitvec8_mul(bitvec8_from_int(10), bitvec8_from_int(-10)));
+ printf("\nComparing %i * %i = %i:\nResult: %d\n", -10, -10, 100, bitvec8_mul(bitvec8_from_int(10), bitvec8_from_int(-10)));
+ printf("\nComparing %i * %i = %i:\nResult: %d\n", 0, 5, 0, bitvec8_mul(bitvec8_from_int(0), bitvec8_from_int(5)));
+ printf("\nComparing %i * %i = %i:\nResult: %d\n", 1, 5, 5, bitvec8_mul(bitvec8_from_int(1), bitvec8_from_int(5)));
+ printf("\nComparing %i * %i = %i:\nResult: %d\n\n", 16, 16, 256, bitvec8_mul(bitvec8_from_int(16), bitvec8_from_int(16)));
 
 
   assert(bitvec8_mul(bitvec8_from_int(5), bitvec8_from_int(3)) == bitvec8_to_int(bitvec8_from_int(15)));
   assert(bitvec8_mul(bitvec8_from_int(10), bitvec8_from_int(-10)) == bitvec8_to_int(bitvec8_from_int(-100)));
+  assert(bitvec8_mul(bitvec8_from_int(-10), bitvec8_from_int(-10)) == bitvec8_to_int(bitvec8_from_int(100)));
   assert(bitvec8_mul(bitvec8_from_int(0), bitvec8_from_int(5)) == bitvec8_to_int(bitvec8_from_int(0)));
   assert(bitvec8_mul(bitvec8_from_int(1), bitvec8_from_int(5)) == bitvec8_to_int(bitvec8_from_int(5)));
   assert(bitvec8_mul(bitvec8_from_int(16), bitvec8_from_int(16)) == bitvec8_to_int(bitvec8_from_int(16)));

@@ -3,10 +3,11 @@
 
 typedef uint8_t bitvec8;
 
-
 bitvec8 bitvec8_add(bitvec8 x, bitvec8 y); // our function didn't work without adding this to the header
 
 bitvec8 bitvec8_negate(bitvec8 x); // Again this wasn't defined so we couldn't test anything....
+
+bitvec8 bitvec8_mul(bitvec8 x, bitvec8 y); // Defined like before
 
 // Convert, and possibly truncate, an unsigned int value
 // into a bitvec8 value.

@@ -62,3 +62,18 @@ bitvec8 bitvec8_negate(bitvec8 x) {
   ```
   entirely
 */
+
+bitvec8 bitvec8_mul(bitvec8 x, bitvec8 y) {
+  bitvec8 result = 0;
+  
+  result = bitvec8_add(result, x & bitvec8_negate(y & 1));
+  result = bitvec8_add(result, (x << 1) & bitvec8_negate((y >> 1) & 1));
+  result = bitvec8_add(result, (x << 2) & bitvec8_negate((y >> 2) & 1));
+  result = bitvec8_add(result, (x << 3) & bitvec8_negate((y >> 3) & 1));
+  result = bitvec8_add(result, (x << 4) & bitvec8_negate((y >> 4) & 1));
+  result = bitvec8_add(result, (x << 5) & bitvec8_negate((y >> 5) & 1));
+  result = bitvec8_add(result, (x << 6) & bitvec8_negate((y >> 6) & 1));
+  result = bitvec8_add(result, (x << 7) & bitvec8_negate((y >> 7) & 1));
+
+  return result;
+}

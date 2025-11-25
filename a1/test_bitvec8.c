@@ -12,6 +12,7 @@ void test_bitvec8_from_int(void) {
 
 
 void bitvec_test_add(void) {
+  printf("\n");
   assert(bitvec8_to_int(bitvec8_add(bitvec8_from_int(4), bitvec8_from_int(6))) == ((4 + 6) & 0xFF));
   assert(bitvec8_to_int(bitvec8_add(bitvec8_from_int(0), bitvec8_from_int(0))) == ((0 + 0) & 0xFF));
   assert(bitvec8_to_int(bitvec8_add(bitvec8_from_int(10), bitvec8_from_int(1))) == ((10 + 1) & 0xFF));
@@ -19,11 +20,16 @@ void bitvec_test_add(void) {
 }
 
 void bitvec_test_negate(void) {
-  printf("%d", bitvec8_to_int(bitvec8_from_int(-10)));
-  printf("\n\n");
-  printf("%d\n", bitvec8_to_int(bitvec8_negate(10)));
+  printf("\nComparing %i with %i: %d ?= %d", 10, -10, bitvec8_to_int(bitvec8_from_int(-10)), bitvec8_to_int(bitvec8_negate(10)));
   assert(bitvec8_to_int(bitvec8_negate(bitvec8_from_int(10))) == bitvec8_to_int(bitvec8_from_int(-10)));
   printf("\nTest %s passed!\n", __func__);
+}
+
+void bitvec_test_mul(void) {
+  printf("Comparing %i * %i = %i:\n", 5, 3, 15);
+  printf("Result form mul func: %d\n", bitvec8_mul(bitvec8_from_int(5), bitvec8_from_int(3)));
+  assert(bitvec8_mul(bitvec8_from_int(5), bitvec8_from_int(3)) == 15);
+  printf("Test bitvec_test_mul passed!\n");
 }
 
 void test_bitvec8_to_int(void) {
@@ -55,8 +61,9 @@ int main(void) {
   test_bitvec8_print();
   bitvec_test_add();
   bitvec_test_negate();
+  bitvec_test_mul();
 
-  printf("All tests passed!\n");
+  printf("\nAll tests passed!\n");
   return 0;
   
 }

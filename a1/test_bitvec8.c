@@ -14,10 +14,23 @@ void test_bitvec8_from_int(void) {
 
 void bitvec_test_add(void) {
   printf("\n");
+  
+  printf("\nTesting %d + %d = %d:\nResult %d \n", 4, 6, 10, bitvec8_to_int(bitvec8_add(bitvec8_from_int(4), bitvec8_from_int(6))));
   assert(bitvec8_to_int(bitvec8_add(bitvec8_from_int(4), bitvec8_from_int(6))) == ((4 + 6) & 0xFF));
+
+  printf("\nTesting %d + %d = %d:\nResult %d \n", 0, 0, 0, bitvec8_to_int(bitvec8_add(bitvec8_from_int(0), bitvec8_from_int(0))));
   assert(bitvec8_to_int(bitvec8_add(bitvec8_from_int(0), bitvec8_from_int(0))) == ((0 + 0) & 0xFF));
+
+  printf("\nTesting %d + %d = %d:\nResult %d \n", 255, 1, 256, bitvec8_to_int(bitvec8_add(bitvec8_from_int(255), bitvec8_from_int(1))));
   assert(bitvec8_to_int(bitvec8_add(bitvec8_from_int(255), bitvec8_from_int(1))) == ((255 + 1) & 0xFF));
-  printf("Test %s passed!\n", __func__);
+
+  printf("\nTesting %d + %d = %d:\nResult %d \n", 10, -10, 0, bitvec8_to_int(bitvec8_add(bitvec8_from_int(10), bitvec8_from_int(-10))));
+  assert(bitvec8_to_int(bitvec8_add(bitvec8_from_int(10), bitvec8_from_int(-10))) == ((10 + -10) & 0xFF));
+
+  printf("\nTesting %d + %d = %d:\nResult %d \n", -10, -10, -20, bitvec8_to_int(bitvec8_add(bitvec8_from_int(-10), bitvec8_from_int(-10))));
+  assert(bitvec8_to_int(bitvec8_add(bitvec8_from_int(-10), bitvec8_from_int(-10))) == ((-10 + -10) & 0xFF));
+  
+  printf("\nTest %s passed!\n", __func__);
 }
 
 void bitvec_test_negate(void) {

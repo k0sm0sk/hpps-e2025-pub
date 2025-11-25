@@ -17,6 +17,7 @@ void bitvec_test_add(void) {
   assert(bitvec8_to_int(bitvec8_add(bitvec8_from_int(4), bitvec8_from_int(6))) == ((4 + 6) & 0xFF));
   assert(bitvec8_to_int(bitvec8_add(bitvec8_from_int(0), bitvec8_from_int(0))) == ((0 + 0) & 0xFF));
   assert(bitvec8_to_int(bitvec8_add(bitvec8_from_int(255), bitvec8_from_int(1))) == ((255 + 1) & 0xFF));
+  assert(bitvec8_to_int(bitvec8_add(bitvec8_from_int(10), bitvec8_from_int(-10))) == ((10 + -10) & 0xFF));
   printf("Test %s passed!\n", __func__);
 }
 

@@ -12,6 +12,12 @@ PROGRAMS = comparison_error \
 # calling 'make' is the same as calling 'make all'.
 all: $(PROGRAMS)
 
+build_test: numlib.c test_numlib.c numlib.h
+	gcc-15 $(CFLAGS) numlib.c test_numlib.c -o test_numlib 
+
+test: build_test
+	./test_numlib
+
 # % does pattern matching with the label name. The line below indicates that
 # the dependencies are restricted to the C file of the same name as the label.
 # $^ is the list of files in the dependencies.

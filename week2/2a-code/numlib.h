@@ -1,3 +1,4 @@
+#include <stdint.h>
+#include <stdio.h>
 
-
-int get_number(void);
+void skipspaces(FILE *f);

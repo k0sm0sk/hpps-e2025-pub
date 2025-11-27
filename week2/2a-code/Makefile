@@ -2,11 +2,13 @@ CC ?= gcc
 CFLAGS i?= -std=c2x -Wall -Wextra -Werror -pedantic
 
 # A multiline string using \ to mark the continuation to the next line
-PROGRAMS = comparison_error \
-		   loop_error \
-		   difference_error \
-		   swamping \
-		   zero_error
+PROGRAMS = hexabyte
+
+build_hex: hexabyte.c
+	gcc-15 $(CFLAGS) hexabyte.c -o hexabyte
+
+run_hex: build_hex
+	./hexabyte
 
 # all label makes it possible to call make without argument.
 # calling 'make' is the same as calling 'make all'.

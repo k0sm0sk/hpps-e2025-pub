@@ -23,7 +23,7 @@ void skipspaces(FILE *f)
 // // Read unsigned integer in base-10 ASCII format from the given file.
 // // Stores the resulting number in the location pointed to by 'out'.
 // // Stops at the first non-digit character, which is left unread. Returns nonzero
-// on failure. Fails if no digits are read before a non-digit is encountered.
+// // on failure. Fails if no digits are read before a non-digit is encountered.
 // // Returns EOF if the first character read results in EOF.
 int read_uint_ascii(FILE *f, uint32_t *out) {
   int read = 0;
@@ -31,7 +31,7 @@ int read_uint_ascii(FILE *f, uint32_t *out) {
 
   while (1) { //while 1 (true)
 
-    int c = fgetc(f);
+    int c = fgetc(f); // fgetc automatically advances filke pointer to next char, so basically an iterative loop through the file
 
     if (c >= '0' && c <= '9') { // check for ints (we are reading ints)
       num = num * 10 + (c - '0'); // 123 = 1*10^2 + 2*10^1 + 3*10^0
@@ -54,6 +54,36 @@ int read_uint_ascii(FILE *f, uint32_t *out) {
     else {
       *out = num; //bind value at memory address of out to be num
       return 0; // break
+    }
+    read++;
+  }
+}
+
+// Write the provided integer in base-10 ASCII format to the given file. 
+// Returns 0 on success.
+int write_uint_ascii(FILE *f, uint32_t x) {
+  int read = 0;
+  x = 0;
+  while (1) {
+    int c = fgetc(f);
+
+    if (c >= 0 && c <= 9) {
+      x = x * 10 + (c + '0'); // now we do e.g. 123: 1 + '0' = 1 + 40 = 41 = '1',then add, shift one time to the left and repeat
+    }
+    if (read == 0) {
+      if (c == EOF) {
+        return EOF;
+      }
+      else {
+        return 1;
+      }
+    }
+    else {
+      // adress to use for what needs to be written, size of data we write (bytes), elements to write, place we write to (pointer)
+      fwrite(x, sizeof(char), 1, f);
+
+      assert(fclose(f) == 0);
+      return 0;
     }
   }
 }

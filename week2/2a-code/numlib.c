@@ -62,28 +62,35 @@ int read_uint_ascii(FILE *f, uint32_t *out) {
 // Write the provided integer in base-10 ASCII format to the given file. 
 // Returns 0 on success.
 int write_uint_ascii(FILE *f, uint32_t x) {
-  int read = 0;
-  x = 0;
-  while (1) {
-    int c = fgetc(f);
+  if (f == NULL) {
+    return 1; // stops if file pointer is invalid
+  }
+  char s[10]; // buffer to store ASCII version of number
+  int i = 10; // start from end of buffer (last char written)
 
-    if (c >= 0 && c <= 9) {
-      x = x * 10 + (c + '0'); // now we do e.g. 123: 1 + '0' = 1 + 40 = 41 = '1',then add, shift one time to the left and repeat
-    }
-    if (read == 0) {
-      if (c == EOF) {
-        return EOF;
-      }
-      else {
-        return 1;
-      }
-    }
-    else {
-      // adress to use for what needs to be written, size of data we write (bytes), elements to write, place we write to (pointer)
-      fwrite(x, sizeof(char), 1, f);
-
-      assert(fclose(f) == 0);
-      return 0;
+  while (x > 0) {
+    int d = x % 10; // pick out last decimal digit
+    x = x / 10; // remove last digit, 123 / 10 becomes 12.3, but since x is an unsigned 32-bit int (uint32_t), the decimal get's removed and so it becomes 12. (integer division, .3 is truncated)
+    i = i - 1; // iterate up through the number (little endian so we go in "reverse")
+    s[i] = '0' + d; // inverse of before, '0' + 1 = 40 + 1 = 41 = '1'
+    if (x == 0) { // breaks when x becomes 0
+      break;
     }
   }
+  // pointer to start pos of string, size of written element (1), selects how many of the last slots of s[i] are used (for 123, i would be 7, so s[7], s[8] & s[9] would be used, and s[0] - s[6] are empty), last is file to write to.
+  fwrite (&s[i], sizeof(char), 10-i, f);
+  assert(fclose(f) == 0); // returns 0 on success, fails assertion otherwise.
 }
+
+/*
+Alternative solution from github
+
+int write_uint_ascii(FILE *f, uint32_t x) {
+  if (fprintf(f, "%u", x) < 0) {
+    return 1;
+  } else {
+    return 0;
+  }
+}
+
+*/

@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <ctype.h>
 #include <string.h>
+#include <assert.h>
 
 void skipspaces(FILE *f)
 {
@@ -62,8 +63,8 @@ int read_uint_ascii(FILE *f, uint32_t *out) {
 // Write the provided integer in base-10 ASCII format to the given file. 
 // Returns 0 on success.
 int write_uint_ascii(FILE *f, uint32_t x) {
-  if (f == NULL) {
-    return 1; // stops if file pointer is invalid
+  if (f == NULL) { // we give as input the file f, but if our `FILE *f` pointer somehow is invalid (pointer had an error), we return error
+    return 1;
   }
   char s[10]; // buffer to store ASCII version of number
   int i = 10; // start from end of buffer (last char written)
@@ -94,3 +95,10 @@ int write_uint_ascii(FILE *f, uint32_t x) {
 }
 
 */
+
+int main() {
+  FILE *f = fopen("numtest.txt", "w"); // makes new file, if already made overwrites (truncates then writes)
+  // if we want to check to see if the file exists, we can call read_uint_ascii (or just fopen with "r" instead), and check for != NULL, then do the "w".
+  write_uint_ascii(f, 8);
+  return 0;
+}

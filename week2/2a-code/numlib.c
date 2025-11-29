@@ -137,9 +137,32 @@ int write_uint_le(FILE *f, uint32_t x) {
   return 0;
 }
 
+// Read little-endian 32-bit integer from given file.
+// Returns 0 on success.
+int read_uint_le(FILE *f, uint32_t *out) {
+  int i = 0;
+  uint32_t value = 0;
+  while (i < 32) {
+    int c = fgetc(f);
+    if (c == EOF) { // if we reach EOF (end of file)
+      return EOF;
+    }
+    value += ((uint32_t)c << i);
+    i += 8;
+  }
+  *out = value;
+  return 0;
 
+}
+/*
+Hints
+  // Use fgetc(f) to read a single byte from a file. Make sure to store the result in a variable of type int, and check whether the return value is EOF.
 
+  // If you have a byte b stored in a variable of type int or uint32_t, then x<<8 shifts that byte 8 bit positions. I.e., 0xFF << 8 == 0xFF00.
 
+  // If you have four bytes that you want to combine into an integer, you can do that with a combination of shifting and bitwise disjunction: b0 | (b1<<8) | (b2<<16) | (b3<<24).
+
+*/
 
 int main() {
   FILE *f = fopen("numtest.txt", "w"); // makes new file, if already made overwrites (truncates then writes)
@@ -160,6 +183,11 @@ int main() {
   // output of xxd numtest.txt: 00000000: 2a00 0000
 
   assert(fclose(f) == 0);
+
+  f = fopen("numtest.txt", "r");
+  uint32_t *le_value;
+  read_uint_le(f, le_value);
+  printf("Read value: %u\n", le_value); // has mistake, gotta fix, currently prints memory address.
 
   return 0;
 }

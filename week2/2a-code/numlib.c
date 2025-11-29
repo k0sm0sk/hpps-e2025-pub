@@ -105,14 +105,33 @@ int write_uint_le(FILE *f, uint32_t x) {
   if (f == NULL) {
     return 1;
   }
+  printf("\nWrite uint little endian, num: %d\n", x);
+  /*
+  unsinged char has single byte (8 bits), holds values 0 - 255 (128, 64, 32, ..., 1)
+  *bytes declares pointer to the unsigned char. *bytes stores memory address of first byte of var x
+  in other words, *bytes stores memory addresses of each bit of x. 42 has 4 addresses (32 bits = 4 bytes of 8 bits), which is accessed:
+  0x0000002A (hex)
+  00: 00000000, 00: 00000000, 00: 00000000, 2a (42): 00110010
+  &x of course gets the memory address of x
+  the (unsigned char *) is a type cast that makes the compiler treat the memory address as an unsigned char.
+  We therefore make the compiler entrerpet the memory address as a sequence of individual bytes, allowing us to iterate through the values one by one.
+  It could be viewed like this (random memory addresses):
+  Address    Byte Value (Hex)    Binary Representation
+  0x1000     0x2A               00101010  (LSB - least significant byte)
+  0x1001     0x00               00000000
+  0x1002     0x00               00000000
+  0x1003     0x00               00000000  (MSB - most significant byte)
 
-  unsigned char *bytes = (unsigned char *)&x;
+  And *no*, we can't just make a loop with stepsize 8 without type casting.
+  If we do, we will be skipping parts of the uint32_t memory address, which wouldn't be converted correctly (like how 00000110 converted to 00 00 01 10 would be 1+2 instead of 4+2)
+  */
+  unsigned char *bytes = (unsigned char *)&x; 
   for (int i = 0; i < sizeof(x); i++)
   {
-    if (fwrite(&bytes[i], sizeof(unsigned char), 1, f) != 1) {
+    if (fwrite(&bytes[i], sizeof(unsigned char), 1, f) != 1) { //fwrite requires pointer, so we use &bytes[i] so it writes the value at the address the pointer points at.
       return 1;
     }
-    printf("i: %d,\t%hhx\n",bytes[i]);
+    printf("i: %d,\t%hhx\n",i,bytes[i]);
   }
 
   return 0;
@@ -139,7 +158,7 @@ int main() {
   f = fopen("numtest.txt", "w");
   write_uint_le(f, 42); // ! we write binary to txt file, so we either need to be in correct cd and (macos) do xxd numtest.txt, or rename file to be of .bin (binary instead)
   // output of xxd numtest.txt: 00000000: 2a00 0000
-  
+
   assert(fclose(f) == 0);
 
   return 0;

@@ -49,7 +49,8 @@ int read_uint_ascii(FILE *f, uint32_t *out) {
         return EOF;
       }
       else {
-        return 1; // if first digit but not EOF, keep while loop going
+        read++; // if first digit but not EOF, keep while loop going
+        // mistake in github solution, return 1 will keep on outputting 1 even though file contains other number
       }
     }
     else {
@@ -80,7 +81,7 @@ int write_uint_ascii(FILE *f, uint32_t x) {
   }
   // pointer to start pos of string, size of written element (1), selects how many of the last slots of s[i] are used (for 123, i would be 7, so s[7], s[8] & s[9] would be used, and s[0] - s[6] are empty), last is file to write to.
   fwrite (&s[i], sizeof(char), 10-i, f);
-  assert(fclose(f) == 0); // returns 0 on success, fails assertion otherwise.
+  // assert(fclose(f) == 0); // returns 0 on success, fails assertion otherwise.
 }
 
 /*
@@ -99,6 +100,15 @@ int write_uint_ascii(FILE *f, uint32_t x) {
 int main() {
   FILE *f = fopen("numtest.txt", "w"); // makes new file, if already made overwrites (truncates then writes)
   // if we want to check to see if the file exists, we can call read_uint_ascii (or just fopen with "r" instead), and check for != NULL, then do the "w".
-  write_uint_ascii(f, 8);
+  write_uint_ascii(f, 52);
+
+  assert(fclose(f) == 0); // we need to close file first so we can reopen with "r". Alternatively "w+" followed by fflush(f); rewind(f);
+
+  f = fopen("numtest.txt", "r");
+  uint32_t value; //empty value we can output to with the *out
+
+  read_uint_ascii(f, &value);
+  printf("%d\n", value);
+  assert(fclose(f) == 0);
   return 0;
 }

@@ -97,10 +97,35 @@ int write_uint_ascii(FILE *f, uint32_t x) {
 
 */
 
+
+// * write_uint_le()
+// Write the provided 32-bit integer in *little endian byte order*
+// to the given file.  Returns 0 on success.
+int write_uint_le(FILE *f, uint32_t x) {
+  if (f == NULL) {
+    return 1;
+  }
+
+  unsigned char *bytes = (unsigned char *)&x;
+  for (int i = 0; i < sizeof(x); i++)
+  {
+    if (fwrite(&bytes[i], sizeof(unsigned char), 1, f) != 1) {
+      return 1;
+    }
+    printf("i: %d,\t%hhx\n",bytes[i]);
+  }
+
+  return 0;
+}
+
+
+
+
+
 int main() {
   FILE *f = fopen("numtest.txt", "w"); // makes new file, if already made overwrites (truncates then writes)
   // if we want to check to see if the file exists, we can call read_uint_ascii (or just fopen with "r" instead), and check for != NULL, then do the "w".
-  write_uint_ascii(f, 52);
+  write_uint_ascii(f, 42);
 
   assert(fclose(f) == 0); // we need to close file first so we can reopen with "r". Alternatively "w+" followed by fflush(f); rewind(f);
 
@@ -110,5 +135,12 @@ int main() {
   read_uint_ascii(f, &value);
   printf("%d\n", value);
   assert(fclose(f) == 0);
+
+  f = fopen("numtest.txt", "w");
+  write_uint_le(f, 42); // ! we write binary to txt file, so we either need to be in correct cd and (macos) do xxd numtest.txt, or rename file to be of .bin (binary instead)
+  // output of xxd numtest.txt: 00000000: 2a00 0000
+  
+  assert(fclose(f) == 0);
+
   return 0;
 }

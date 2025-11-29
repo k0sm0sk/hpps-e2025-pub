@@ -13,6 +13,9 @@ run_hex: build_hex
 build_num: numlib.c numlib.h
 	gcc-15 $(CFLAGS) numlib.c numlib.h -o numlib
 
+num: build_num 
+	./numlib
+
 # all label makes it possible to call make without argument.
 # calling 'make' is the same as calling 'make all'.
 all: $(PROGRAMS)

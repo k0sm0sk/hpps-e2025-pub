@@ -233,23 +233,53 @@ int read_uint_be(FILE *f, uint32_t *out)
 int read_double_bin(FILE *f, double *out)
 {
   double tmp;
-
-  if (fread(&tmp, sizeof(double), 1, f) == 1) {
-    *out = tmp;
+  if (fread(&tmp, sizeof(double), 1, f) == 1) { // if we read from file (f), an amount of times eaqual to sizeof(double), i.e. 8 times (8 bytes), we successfully return 1 and bind &tmp to the output.
+    *out = tmp; // we then bind the pointer we use to be the value of tmp
     return 0;
   }
   else {
-    if (feof(f)) {
+    if (feof(f)) { // check end of file
       return EOF;
     }
-    else {
+    else { // otherwise return error
       return 1;
     }
   }
   
 }
 
+int write_double_bin(FILE *f, double x)
+{
+  if (fwrite(&x, sizeof(double), 1, f) == 1) {
+    return 0;
+  }
+  else {
+    if (feof(f)){ // check end of file
+      return EOF;
+    }
+    else{ // otherwise return error
+      return 1;
+    }
+  }
+}
 
+
+/*
+
+*
+* - Write double ASCII
+*
+
+*/
+
+int write_double_ascii(FILE *f, double x) {
+  if (fprintf(f, "%u", x) < 0) { // no valhalla for us
+    return 1;
+  }
+  else {
+    return 0;
+  }
+}
 
 /*
 

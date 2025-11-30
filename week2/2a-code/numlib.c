@@ -9,7 +9,7 @@ void skipspaces(FILE *f)
 {
   while (1)
   {
-    int c = fgetc(f);
+    int c = fgetc(f); // ["h", "e", "j"] ("hej")
     if (!isspace(c))
     {
       if (c != EOF)
@@ -163,6 +163,63 @@ Hints
   // If you have four bytes that you want to combine into an integer, you can do that with a combination of shifting and bitwise disjunction: b0 | (b1<<8) | (b2<<16) | (b3<<24).
 
 */
+
+int write_uint_be(FILE *f, uint32_t x)
+{
+  if (f == NULL)
+  {
+    return 1;
+  }
+  printf("\nWrite uint big endian, num: %d\n", x);
+  /*
+  unsinged char has single byte (8 bits), holds values 0 - 255 (128, 64, 32, ..., 1)
+  *bytes declares pointer to the unsigned char. *bytes stores memory address of first byte of var x
+  in other words, *bytes stores memory addresses of each bit of x. 42 has 4 addresses (32 bits = 4 bytes of 8 bits), which is accessed:
+  0x0000002A (hex)
+  00: 00000000, 00: 00000000, 00: 00000000, 2a (42): 00110010
+  &x of course gets the memory address of x
+  the (unsigned char *) is a type cast that makes the compiler treat the memory address as an unsigned char.
+  We therefore make the compiler entrerpet the memory address as a sequence of individual bytes, allowing us to iterate through the values one by one.
+  It could be viewed like this (random memory addresses):
+  Address    Byte Value (Hex)   Binary Representation
+  0x1000     0x2A               00101010  (LSB - least significant byte)
+  0x1001     0x00               00000000
+  0x1002     0x00               00000000
+  0x1003     0x00               00000000  (MSB - most significant byte)
+
+  And *no*, we can't just make a loop with stepsize 8 without type casting.
+  If we do, we will be skipping parts of the uint32_t memory address, which wouldn't be converted correctly (like how 00000110 converted to 00 00 01 10 would be 1+2 instead of 4+2)
+  */
+  unsigned char *bytes = (unsigned char *)&x;
+  for (int i = sizeof(x); i > 0; i--)
+  {
+    if (fwrite(&bytes[i], sizeof(unsigned char), 1, f) != 1)
+    { // fwrite requires pointer, so we use &bytes[i] so it writes the value at the address the pointer points at.
+      return 1;
+    }
+    printf("i: %d,\t%hhx\n", i, bytes[i]);
+  }
+
+  return 0;
+}
+
+int read_uint_be(FILE *f, uint32_t *out)
+{
+  int i = 24; // since we place 1 byte (8 bits) at a time, we can't start at index 32, since it would be the last bit, so we start at 32-8
+  uint32_t value = 0;
+  while (i >= 0)
+  {
+    int c = fgetc(f);
+    if (c == EOF)
+    { // if we reach EOF (end of file)
+      return EOF;
+    }
+    value += ((uint32_t)c << i);
+    i -= 8;
+  }
+  *out = value;
+  return 0;
+}
 
 int main() {
   FILE *f = fopen("numtest.txt", "w"); // makes new file, if already made overwrites (truncates then writes)

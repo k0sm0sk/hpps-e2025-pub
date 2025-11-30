@@ -221,6 +221,42 @@ int read_uint_be(FILE *f, uint32_t *out)
   return 0;
 }
 
+
+/*
+
+*
+* - DOUBLES -
+*
+
+*/
+
+int read_double_bin(FILE *f, double *out)
+{
+  double tmp;
+
+  if (fread(&tmp, sizeof(double), 1, f) == 1) {
+    *out = tmp;
+    return 0;
+  }
+  else {
+    if (feof(f)) {
+      return EOF;
+    }
+    else {
+      return 1;
+    }
+  }
+  
+}
+
+
+
+/*
+
+* - Main -
+
+*/
+
 int main() {
   FILE *f = fopen("numtest.txt", "w"); // makes new file, if already made overwrites (truncates then writes)
   // if we want to check to see if the file exists, we can call read_uint_ascii (or just fopen with "r" instead), and check for != NULL, then do the "w".

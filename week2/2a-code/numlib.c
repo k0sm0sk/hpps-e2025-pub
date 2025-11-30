@@ -116,7 +116,7 @@ int write_uint_le(FILE *f, uint32_t x) {
   the (unsigned char *) is a type cast that makes the compiler treat the memory address as an unsigned char.
   We therefore make the compiler entrerpet the memory address as a sequence of individual bytes, allowing us to iterate through the values one by one.
   It could be viewed like this (random memory addresses):
-  Address    Byte Value (Hex)    Binary Representation
+  Address    Byte Value (Hex)   Binary Representation
   0x1000     0x2A               00101010  (LSB - least significant byte)
   0x1001     0x00               00000000
   0x1002     0x00               00000000
@@ -185,9 +185,9 @@ int main() {
   assert(fclose(f) == 0);
 
   f = fopen("numtest.txt", "r");
-  uint32_t *le_value;
-  read_uint_le(f, le_value);
-  printf("Read value: %u\n", le_value); // has mistake, gotta fix, currently prints memory address.
+  uint32_t le_value; // make normal uint32_t (not memory address)
+  read_uint_le(f, &le_value); //pass the address to function instead the actual value.
+  printf("Read value: %u\n", le_value);
 
   return 0;
 }

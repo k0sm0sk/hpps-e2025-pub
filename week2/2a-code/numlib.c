@@ -294,6 +294,7 @@ int write_double_ascii(FILE *f, double x) {
 */
 
 int read_double_ascii(FILE *f, double *out) {
+  skipspaces(f);
 
   int negative;
   int c = fgetc(f);
@@ -305,7 +306,9 @@ int read_double_ascii(FILE *f, double *out) {
     ungetc(c, f);
   }
   unsigned int int_part;
-  read_uint_ascii(f, &int_part);
+  if (read_uint_ascii(f, &int_part) != 0) {
+    return 1; 
+}
 
   c = fgetc(f);
   double frac_part = 0.0;
@@ -337,7 +340,7 @@ int read_double_ascii(FILE *f, double *out) {
   }
 
   *out = result;
-  return 1;
+  return 0;
 }
 
 

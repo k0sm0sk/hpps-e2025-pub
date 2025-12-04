@@ -20,8 +20,8 @@ num: build_num
 # calling 'make' is the same as calling 'make all'.
 all: $(PROGRAMS)
 
-build_test: numlib.c test_numlib.c numlib.h
-	gcc-15 $(CFLAGS) numlib.c test_numlib.c -o test_numlib 
+build_test: numlib.c numlib.h
+	gcc $(CFLAGS) numlib.c -o test_numlib 
 
 test: build_test
 	./test_numlib
@@ -35,3 +35,6 @@ test: build_test
 
 clean:
 	rm -f $(PROGRAMS)
+
+avg: avg_doubles.c
+	gcc $(CFLAGS) avg_doubles.c -o avg

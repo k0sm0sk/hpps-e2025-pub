@@ -11,3 +11,7 @@ void skipspaces(FILE *f);
 int read_uint_ascii(FILE *f, uint32_t *out);
 
 int read_double_bin(FILE *f, double *out);
+
+int read_double_ascii(FILE *f, double *out);
+
+int write_double_bin(FILE *f, double x);

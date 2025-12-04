@@ -42,20 +42,24 @@ int read_uint_ascii(FILE *f, uint32_t *out) {
       c=2: '2' - '0' = 32 - 30 = 2, then 100 + 2*10^1 = 100 + 20 = 120
       c=3: '3' - '0' = 33 - 30 = 3, then 120 + 3*10^0 = 120 + 3 = 123, and so '123' get's converted into int 123
       */
-    }
+    } else {
 
-    if (read == 0) { // if first digit we read
-      if (c == EOF) { // if we reach EOF (end of file)
-        return EOF;
+      if (c != EOF) {
+        ungetc(c, f);
+      }
+
+      if (read == 0) { // if first digit we read
+        if (c == EOF) { // if we reach EOF (end of file)
+          return EOF;
+        }
+        else {
+          return 1; // if first digit but not EOF, keep while loop going
+        }
       }
       else {
-        read++; // if first digit but not EOF, keep while loop going
-        // mistake in github solution, return 1 will keep on outputting 1 even though file contains other number
+        *out = num; //bind value at memory address of out to be num
+        return 0; // break
       }
-    }
-    else {
-      *out = num; //bind value at memory address of out to be num
-      return 0; // break
     }
     read++;
   }
@@ -273,12 +277,66 @@ int write_double_bin(FILE *f, double x)
 */
 
 int write_double_ascii(FILE *f, double x) {
-  if (fprintf(f, "%u", x) < 0) { // no valhalla for us
+  if (fprintf(f, "%lf", x) < 0) { // no valhalla for us
     return 1;
   }
   else {
     return 0;
   }
+}
+
+
+/*
+
+* - Read double ASCII
+
+*/
+
+int read_double_ascii(FILE *f, double *out) {
+
+  int negative;
+  int c = fgetc(f);
+  if (c == '-') {
+    negative = 1;
+  }
+  else {
+    negative = 0;
+    ungetc(c, f);
+  }
+  unsigned int int_part;
+  read_uint_ascii(f, &int_part);
+
+  c = fgetc(f);
+  double frac_part = 0.0;
+
+  if (c == '.') {
+    double divisor = 10.0;
+    while ((c = fgetc(f)) != EOF && isdigit(c)) {
+      frac_part += (c - '0') / divisor; // '123.456': 0.0 + (34 - 30) / 10.0 = 0.0 + 4 / 10.0 = 0.4, then 0.4 + 0.05 + 0.006 = 0.456
+      divisor *= 10; // so we can move from 0.4 to 0.05 etc
+    }
+    if (c != EOF) {
+      ungetc(c, f);
+      // In the while loop, we iterate until we encounter a character that is not a digit (or EOF).
+      // At this point, the loop breaks, but the last character read (stored in c) has not been processed.
+      // For example, in "123.456", the loop would process "456" as the fractional part, but it would break
+      // upon encountering a non-digit character (e.g., a space or newline). We use ungetc to put this
+      // character back into the input stream for further processing, as long as it's not EOF. what it is and put it back if it's not EOF.
+    }
+  }
+  else if (c != EOF) {
+    ungetc(c, f); // put back char if it's not EOF and not digit
+  }
+
+  double result = int_part + frac_part;
+
+
+  if (negative == 1) {
+    result = -result;
+  }
+
+  *out = result;
+  return 1;
 }
 
 /*
@@ -298,7 +356,7 @@ int main() {
   uint32_t value; //empty value we can output to with the *out
 
   read_uint_ascii(f, &value);
-  printf("%d\n", value);
+  printf("Read uint ascii value: %d\n", value);
   assert(fclose(f) == 0);
 
   f = fopen("numtest.txt", "w");
@@ -311,6 +369,19 @@ int main() {
   uint32_t le_value; // make normal uint32_t (not memory address)
   read_uint_le(f, &le_value); //pass the address to function instead the actual value.
   printf("Read value: %u\n", le_value);
+  assert(fclose(f) == 0);
+
+  FILE *a = fopen("doubletest.txt", "w");
+  double test_val = -123.456;
+  write_double_ascii(a, test_val);
+  assert(fclose(a) == 0);
+
+  a = fopen("doubletest.txt", "r");
+  double ascii_val;
+  read_double_ascii(a, &ascii_val);
+  printf("\nRead ASCII as double: %lf\n", ascii_val);
+
+  assert(fclose(a) == 0);
 
   return 0;
 }

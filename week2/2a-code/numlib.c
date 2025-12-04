@@ -314,3 +314,16 @@ int main() {
 
   return 0;
 }
+
+/*
+
+%d or %i: Integer
+%u: Unsigned integer
+%f: Floating-point number
+%s: String
+%c: Character
+%x or %X: Hexadecimal integer
+%o: Octal integer
+%%: Literal % character
+
+*/

@@ -1,6 +1,7 @@
 #include "numlib.h"
 #include "assert.h"
 #include "stdio.h"
+#include "stdint.h"
 
 void test_get_number(void) {
     printf("\n%d", get_number());

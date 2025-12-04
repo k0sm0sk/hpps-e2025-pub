@@ -11,7 +11,7 @@ run_hex: build_hex
 	./hexabyte
 
 build_num: numlib.c numlib.h
-	gcc $(CFLAGS) numlib.c numlib.h -o numlib
+	gcc-15 $(CFLAGS) numlib.c -o numlib
 
 num: build_num 
 	./numlib

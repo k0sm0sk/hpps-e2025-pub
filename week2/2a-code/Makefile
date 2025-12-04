@@ -36,5 +36,5 @@ test: build_test
 clean:
 	rm -f $(PROGRAMS)
 
-avg: avg_doubles.c
-	gcc $(CFLAGS) avg_doubles.c -o avg
+avg: avg_doubles.c numlib.c
+	gcc avg_doubles.c numlib.c -o avg 

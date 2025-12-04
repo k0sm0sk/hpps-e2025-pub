@@ -9,3 +9,5 @@ void skipspaces(FILE *f);
 // on failure. Fails if no digits are read before a non-digit is encountered.
 // Returns EOF if the first character read results in EOF.
 int read_uint_ascii(FILE *f, uint32_t *out);
+
+int read_double_bin(FILE *f, double *out);

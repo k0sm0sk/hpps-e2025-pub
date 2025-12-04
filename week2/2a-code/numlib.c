@@ -86,6 +86,7 @@ int write_uint_ascii(FILE *f, uint32_t x) {
   // pointer to start pos of string, size of written element (1), selects how many of the last slots of s[i] are used (for 123, i would be 7, so s[7], s[8] & s[9] would be used, and s[0] - s[6] are empty), last is file to write to.
   fwrite (&s[i], sizeof(char), 10-i, f);
   // assert(fclose(f) == 0); // returns 0 on success, fails assertion otherwise.
+  return 0;
 }
 
 /*
@@ -249,7 +250,7 @@ int read_double_bin(FILE *f, double *out)
       return 1;
     }
   }
-  
+
 }
 
 int write_double_bin(FILE *f, double x)
@@ -339,12 +340,14 @@ int read_double_ascii(FILE *f, double *out) {
   return 1;
 }
 
+
+
 /*
 
 * - Main -
 
 */
-
+/*
 int main() {
   FILE *f = fopen("numtest.txt", "w"); // makes new file, if already made overwrites (truncates then writes)
   // if we want to check to see if the file exists, we can call read_uint_ascii (or just fopen with "r" instead), and check for != NULL, then do the "w".
@@ -385,6 +388,7 @@ int main() {
 
   return 0;
 }
+*/
 
 /*
 

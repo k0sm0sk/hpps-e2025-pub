@@ -42,5 +42,8 @@ test: build_test
 clean:
 	rm -f $(PROGRAMS)
 
-avg: avg_doubles.c numlib.c
-	gcc avg_doubles.c numlib.c -o avg 
+avg_doubles: avg_doubles.c numlib.c double_ascii_to_double_bin.c
+	gcc avg_doubles.c numlib.c double_ascii_to_double_bin.c -o avg_doubles 
+
+test_functions: test_functions
+	./test_functions

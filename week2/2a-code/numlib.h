@@ -15,3 +15,7 @@ int read_double_bin(FILE *f, double *out);
 int read_double_ascii(FILE *f, double *out);
 
 int write_double_bin(FILE *f, double x);
+
+int write_double_ascii(FILE *f, double x);
+
+int read_uint_be(FILE *f, uint32_t *out);

@@ -19,7 +19,8 @@ int* knn(int k, int d, int n, const double *points, const double* query) {
 
 
   for(int candidate = 0; candidate < n; candidate++) {
-  insert_if_closer(k, d, points, closest_memory, query, candidate);
+    insert_if_closer(k, d, points, closest_memory, query, candidate);
   }
   
+  return closest_memory;
 }

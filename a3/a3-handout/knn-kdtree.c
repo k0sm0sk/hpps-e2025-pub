@@ -5,6 +5,7 @@
 #include <assert.h>
 #include <stdint.h>
 #include <string.h>
+#include <time.h>
 
 int main(int argc, char** argv) {
   if (argc != 4 && argc != 5) {
@@ -50,6 +51,7 @@ int main(int argc, char** argv) {
   struct kdtree *kdtree = kdtree_create(d, n_points, points);
   int* indexes = malloc(n_queries*k*sizeof(int));
 
+  clock_t start = clock();
   for (int q = 0; q < n_queries; q++) {
     int *closest = kdtree_knn(kdtree, k, &queries[q*d]);
 
@@ -62,6 +64,9 @@ int main(int argc, char** argv) {
     memcpy(&indexes[q*k], closest, k*sizeof(int));
     free(closest);
   }
+  clock_t end = clock();
+  double runtime = ((double)(end - start)) / CLOCKS_PER_SEC;
+  printf("Runtime: %.6f seconds\n", runtime);
 
   if (argc == 5) {
     FILE *output_f = fopen(argv[4], "w");

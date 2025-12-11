@@ -12,8 +12,11 @@ double distance(int d, const double *x, const double *y) {
   return sqrt(sum);
 }
 
-int insert_if_closer(int k, int d,
-                     const double *points, int *closest, const double *query,
+int insert_if_closer(int k, 
+                     int d,
+                     const double *points, 
+                     int *closest, 
+                     const double *query,
                      int candidate) {
   double candidate_dist = distance(d, points + candidate * d, query);
   

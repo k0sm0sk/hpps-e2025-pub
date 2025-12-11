@@ -2,7 +2,7 @@ CC?=gcc
 CFLAGS?=-Wextra -Wall -pedantic -std=c99 -g
 LDFLAGS?=-lm
 
-all: sort-example knn-bruteforce knn-svg knn-kdtree knn-genpoints
+all: sort-example knn-bruteforce knn-svg knn-kdtree knn-genpoints test_util
 
 sort-example: sort-example.o sort.o
 	$(CC) -o $@ $^ $(LDFLAGS)
@@ -19,13 +19,16 @@ knn-genpoints: knn-genpoints.o io.o
 knn-svg: knn-svg.o io.o util.o kdtree.o sort.o
 	$(CC) -o $@ $^ $(LDFLAGS)
 
+test_util: test_util.o util.o
+	$(CC) -o $@ $^ $(LDFLAGS)
+
 # A general rule that tells us how to generate an .o file from a .c
 # file.  This cuts down on the boilerplate.
 %.o: %.c
 	$(CC) -c $< $(CFLAGS)
 
 clean:
-	rm -rf sort-example knn-genpoints knn-bruteforce knn-svg knn-kdtree *.o *.dSYM
+	rm -rf sort-example knn-genpoints knn-bruteforce knn-svg knn-kdtree test_util *.o *.dSYM
 	rm -rf points queries indexes points.svg
 
 # Testing rules

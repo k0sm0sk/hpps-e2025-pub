@@ -65,3 +65,12 @@ const struct record * lookup_indexed(struct indexed_data *data, int64_t needle) 
     return NULL;
 }
 
+int main(int argc, char **argv)
+{
+    assert(argc >= 2 && "Incorrect arg amount");
+
+    return id_query_loop(argc, argv,
+                         (mk_index_fn)mk_indexed,
+                         (free_index_fn)free_indexed,
+                         (lookup_fn)lookup_indexed);
+}

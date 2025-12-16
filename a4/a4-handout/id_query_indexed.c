@@ -11,13 +11,12 @@
 
 
 
-struct index_record
-{
+struct index_record {
     int64_t osm_id;
     const struct record *record;
 };
 
-struct indexed_data{
+struct indexed_data {
     struct index_record *irs;
     int n;
 };

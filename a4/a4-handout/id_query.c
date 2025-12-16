@@ -33,7 +33,7 @@ int id_query_loop(int argc, char** argv, mk_index_fn mk_index, free_index_fn fre
 
     uint64_t runtime_sum = 0;
     while (getline(&line, &line_len, stdin) != -1) {
-      int64_t needle = atol(line);
+      int64_t needle = atol(line); // converts string to long integer
 
       start = microseconds();
       const struct record *r = lookup(index, needle);

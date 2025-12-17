@@ -36,7 +36,6 @@ struct indexed_data * mk_indexed(struct record *rs, int n) {
     }
 
     return idx_data;
-    // ? Maybe we should add freeing of memory?
 }
 
 void free_indexed(struct indexed_data *data) {

@@ -1,4 +1,4 @@
-CC?=gcc-15
+CC?=gcc
 CFLAGS?=-Wall -Wextra -pedantic -std=gnu99 -g
 LDFLAGS?=-lm
 PROGRAMS=random_ids id_query_naive coord_query_naive
@@ -9,13 +9,13 @@ TESTS=..
 all: $(PROGRAMS)
 
 random_ids: random_ids.o record.o
-	gcc-15 -o $@ $^ $(LDFLAGS)
+	$(CC) -o $@ $^ $(LDFLAGS)
 
 id_query_%: id_query_%.o record.o id_query.o
-	gcc-15 -o $@ $^ $(LDFLAGS)
+	$(CC) -o $@ $^ $(LDFLAGS)
 
 coord_query_%: coord_query_%.o record.o coord_query.o
-	gcc-15 -o $@ $^ $(LDFLAGS)
+	$(CC) -o $@ $^ $(LDFLAGS)
 
 id_query.o: id_query.c
 	$(CC) -c $< $(CFLAGS)

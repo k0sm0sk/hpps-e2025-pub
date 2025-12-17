@@ -36,7 +36,7 @@ const struct record* lookup_naive(struct naive_data *data, int64_t needle) {
   while (i < len) {
     assert(points != NULL);
     if (points[i].osm_id == needle) { // if id of current row == needle's id
-      return &points[i].osm_id;
+      return &points[i];
     }
     i++;
   }

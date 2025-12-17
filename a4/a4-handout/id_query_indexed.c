@@ -33,6 +33,7 @@ struct indexed_data * mk_indexed(struct record *rs, int n) {
 
     for (int i = 0; i < n; i++) {
         idx_data->irs[i].osm_id = rs[i].osm_id;
+        idx_data->irs[i].record = &rs[i];
     }
 
     return idx_data;
@@ -55,7 +56,7 @@ const struct record * lookup_indexed(struct indexed_data *data, int64_t needle) 
 
     while (i < len) {
         if (points[i].osm_id == needle) { // if id of current row == needle's id
-            return &points[i];
+            return points[i].record;
         }
         i++;
     }

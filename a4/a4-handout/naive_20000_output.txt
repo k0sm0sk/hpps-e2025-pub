@@ -1,0 +1,203 @@
+Reading records: 22ms
+Building index: 0ms
+553303: Fujian 118.295396 25.783753
+Query time: 9us
+49715: Poland 19.195473 52.017935
+Query time: 0us
+2018151: Kerala 76.275623 10.445806
+Query time: 1us
+390558: Nova Scotia -62.987611 45.257155
+Query time: 13us
+1521463: Guatemala -90.074092 15.737504
+Query time: 1us
+2906044: Shikoku 133.371889 33.560874
+Query time: 3us
+133890997: Volga 45.654651 50.236829
+Query time: 2us
+21579127: Melbourne 144.963161 -37.814218
+Query time: 1us
+161638: Missouri -92.492427 38.303985
+Query time: 1us
+132348: Poitiers 0.367982 46.584528
+Query time: 2us
+62598: Kassel 9.455284 51.307147
+Query time: 2us
+324899689: Volga 45.326378 56.103788
+Query time: 2us
+27308495: Volga 44.304411 56.168765
+Query time: 2us
+2456294: Poznań 16.919752 52.400652
+Query time: 1us
+7392: Yonne 3.645044 47.855126
+Query time: 2us
+162018: Arizona -111.668594 34.168539
+Query time: 0us
+36966065: Asia 104.000000 56.000000
+Query time: 0us
+1742393: Chernivtsi 25.951533 48.321072
+Query time: 1us
+1473947: Egypt 29.615560 26.918236
+Query time: 0us
+378734: Bahrain 50.600853 26.123963
+Query time: 1us
+371363775: Volga 48.870365 55.786505
+Query time: 2us
+2369652: Tasmania 146.600261 -41.628875
+Query time: 1us
+324899691: Volga 45.730934 56.144976
+Query time: 2us
+119557: Atlanta -84.421548 33.767672
+Query time: 1us
+390841: Manitoba -97.226074 54.498257
+Query time: 1us
+2027973: Nagaland 94.555792 26.121165
+Query time: 2us
+133890998: Volga 45.568080 50.170638
+Query time: 2us
+912942: Liaoning 122.325674 40.975703
+Query time: 2us
+175905: New York City -73.878416 40.693073
+Query time: 0us
+401444978: Morter 10.822251 46.606331
+Query time: 1us
+1847663: Shikoku Region 133.445787 33.507968
+Query time: 3us
+195271: Zambia 25.454838 -13.174607
+Query time: 1us
+119585293: Volga 46.220094 51.592208
+Query time: 2us
+378734: Bahrain 50.600853 26.123963
+Query time: 1us
+223287694: Liaison Office of the Hellenic Republic 21.423448 41.997644
+Query time: 0us
+8651: Picardy 2.871622 49.601756
+Query time: 1us
+7415: Bas-Rhin 7.533819 48.599178
+Query time: 2us
+188022: Philadelphia -75.139456 40.002343
+Query time: 1us
+7383: Seine-et-Marne 3.041702 48.619186
+Query time: 2us
+1116270: Alaska -153.723289 61.932831
+Query time: 0us
+59470: Brazil -49.616067 -14.298000
+Query time: 0us
+217419729: Volga 47.465944 56.137777
+Query time: 2us
+68942: New Brunswick -66.129619 46.320842
+Query time: 2us
+130072481: Volga 45.259705 49.702694
+Query time: 2us
+80500: Australia 133.361953 -26.719323
+Query time: 0us
+357113: Kinki Region 135.545734 34.695612
+Query time: 3us
+80500: Australia 133.361953 -26.719323
+Query time: 0us
+1211180500: Haridwār 78.145298 29.938447
+Query time: 2us
+39513: Palermo 13.310707 38.137211
+Query time: 1us
+133345: Baltimore -76.620475 39.284749
+Query time: 2us
+261657500: Volga 43.330976 56.663625
+Query time: 1us
+1381350: Jerusalem 35.211980 31.795924
+Query time: 1us
+562654: Brugge 3.219884 51.260128
+Query time: 3us
+110866: Clermont-Ferrand 3.106059 45.787059
+Query time: 2us
+132348: Poitiers 0.367982 46.584528
+Query time: 2us
+1682378: Bern 7.420693 46.954546
+Query time: 1us
+1721119349: Extremadura -6.152989 39.174843
+Query time: 3us
+53937: Abruzzo 13.853908 42.288855
+Query time: 2us
+2396450: Busan 128.989365 35.064147
+Query time: 2us
+1244004: Budapest 19.146073 47.481389
+Query time: 1us
+1683619: Basel 7.590247 47.554508
+Query time: 1us
+62649: Leipzig 12.388553 51.343091
+Query time: 0us
+36989: Vatican City 12.453157 41.903810
+Query time: 1us
+53937: Abruzzo 13.853908 42.288855
+Query time: 2us
+324899689: Volga 45.326378 56.103788
+Query time: 2us
+24517022: Volga 36.744092 56.751376
+Query time: 2us
+192756: Algeria 0.605539 28.142011
+Query time: 0us
+1785276: Réunion 55.528257 -21.132015
+Query time: 1us
+186579: Portland -122.619889 45.542584
+Query time: 2us
+1891495: Martinique -61.008025 14.652174
+Query time: 1us
+2316598: Western Australia 121.091379 -24.305888
+Query time: 2us
+26161363: Volga 35.794555 56.849781
+Query time: 2us
+8636: Alsace 7.407470 48.249176
+Query time: 0us
+240058050: Heidelberg 8.694724 49.409358
+Query time: 1us
+62411: Regensburg 12.101087 49.021597
+Query time: 2us
+120965: Lyon 4.829877 45.757737
+Query time: 1us
+123292: City of Nottingham -1.169557 52.953768
+Query time: 2us
+449696: Krakow 19.997064 50.046910
+Query time: 1us
+2597485: Gdańsk 18.628233 54.361430
+Query time: 1us
+1702499: Bratislava 17.159744 48.135908
+Query time: 0us
+2029046: Mizoram 92.866699 23.237675
+Query time: 2us
+54517: Rennes -1.681359 48.116000
+Query time: 2us
+27309369: Volga 34.574649 56.191658
+Query time: 1us
+1949080: Gujarat 71.498674 22.413424
+Query time: 1us
+8656: Upper Normandy 1.026055 49.371127
+Query time: 3us
+86538: Salzburg 13.057955 47.802827
+Query time: 1us
+69376388: Volga 45.815397 50.316569
+Query time: 2us
+231974100: Volga 39.904762 57.628551
+Query time: 2us
+1121015: Arras 2.774694 50.289113
+Query time: 2us
+62504: Brandenburg 14.159419 52.459149
+Query time: 1us
+1997192: Goa 73.890007 15.269600
+Query time: 1us
+1942809: Chandigarh 76.770503 30.735154
+Query time: 1us
+87565: South Africa 24.086807 -28.579409
+Query time: 0us
+6038068: Great Britain -4.688478 52.132202
+Query time: 1us
+4642463209: Macau 113.551543 22.174191
+Query time: 1us
+223287694: Liaison Office of the Hellenic Republic 21.423448 41.997644
+Query time: 0us
+2873415: Szczecin 14.592908 53.429683
+Query time: 1us
+307584: Saudi Arabia 44.322215 24.217621
+Query time: 1us
+1155955: Liechtenstein 9.546912 47.159413
+Query time: 0us
+192756: Algeria 0.605539 28.142011
+Query time: 0us
+Total query runtime: 150us

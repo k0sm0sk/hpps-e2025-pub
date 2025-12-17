@@ -1,0 +1,11 @@
+10
+relation 58447
+Bhrasaíl,Bahsih,Barasiil,Barazil,Biraazil,Bradir,Braezi,Braisil,Brasiilia,Brasil,Brasilän,Brasile,Brasilia,Brasilía,Brasilië,Brasilien,Braziel,Brażil,Brazîl,Brazila,Brazili,Brazilia,Brazília,Brazílie,Brazilië,Brazilija,Brazīlija,Braziliya,Braziliýa,Brazilo,Brazylia,Brazylje,Breesil,Brésil,Brezil,Brezilya,Buraziiri,Burezile,Bwazííl,IBrazili,Palāsili,Parīhi,Parīihi,Pasila,Pindoráma,Prasil,República Federativa
+of Australia,I-Ostreliya,Laustralän,Nahatʼeʼiitsoh
+relation 71525
+relation 7444
+영국,イギリス,ዩናይትድ ኪንግደም,ޔުނައިޓެޑް
+t-Suain,An tSualainn,Huītene,İsveç,Isvetzia,ISwideni,ISwidi,Iswiidhan,Konungariket
+Đôn,لندن,Λονδίνο,Лондан,Лондон,लंदन,伦敦 relation
+Eilbheis,An Eilbhéis,Elveţia,Helvetia,İsveçrə,İsviçre,Isvìtzera,Iswiizerlaan,ISwizalandi,Jveizän,Nyeiqswq,Schwäiz,Schweiz,Schweizi,Schweiz/Suisse/Svizzera/Svizra,Shveysariya,Shwétsariye,Soisa,Soïssa,Suíça,Suis,Suisa,Suisi,Suisia,Suissa,Suïssa,Suisse,Suitza,Suiza,Suíza,Suwis,Suwisa,Svájc,Švajcarska,Švajčiarsko,Šveica,Šveicarija,Šveice,Sveis,Sveits,Šveits,Sveitsi,Švica,Švicarska,Sviss,Svissia,Svisujo,Svizra,Svizzera,Švýcarsko,Şweýsariýa,Swis,Swis
+Âu,Eoraip,Eropah,Eurooppa,Europa,Európa,Eŭropo,Evropa,Evrópa,Ewropa,Jeropa,Ūropi,Yurop,اروپا,أوروبا,Ευρώπη,Европа,Еўропа,Європа,यूरोप,ಯುರೋಪ್,ஐரோப்பா,欧洲 node
